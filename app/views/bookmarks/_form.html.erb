@@ -1,0 +1,11 @@
+<%= form_with model: [@list, bookmark], local: true do |form| %>
+  <div>
+    <%= form.label :movie_id, "Film" %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :title %>
+  </div>
+  <div>
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+  <%= form.submit "Ajouter", class: "btn btn-success" %>
+<% end %>

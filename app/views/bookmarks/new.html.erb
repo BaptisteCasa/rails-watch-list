@@ -1,0 +1,5 @@
+<h2>Ajouter un film à <%= @list.name %></h2>
+
+<%= render 'form', bookmark: @bookmark %>
+
+<%= link_to "Retour à la liste", list_path(@list), class: "btn btn-secondary" %>

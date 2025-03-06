@@ -1,0 +1,25 @@
+<h1><%= @list.name %></h1>
+
+<h2>Films :</h2>
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li>
+      <%= image_tag bookmark.movie.poster_url, width: 100 %>
+      <strong><%= bookmark.movie.title %></strong> - <%= bookmark.comment %>
+      <%= link_to "❌", bookmark_path(bookmark), method: :delete, data: { confirm: "Supprimer ?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Ajouter un film :</h2>
+<%= form_with model: [@list, @bookmark], local: true do |form| %>
+  <div>
+    <%= form.label :movie_id, "Film" %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :title %>
+  </div>
+  <div>
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+  <%= form.submit "Ajouter", class: "btn btn-success" %>
+<% end %>
